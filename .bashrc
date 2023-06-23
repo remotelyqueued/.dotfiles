@@ -150,3 +150,5 @@ alias journal='journalctl -p 3 -xb'
 
 alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
 alias config='/usr/bin/git --git-dir=/home/ryan/.dotfiles/ --work-tree=/home/ryan'
+source /usr/share/bash-completion/completions/git
+__git_complete config __git_main
