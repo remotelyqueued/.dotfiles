@@ -42,7 +42,6 @@ HISTFILESIZE=
 # https://github.com/sharkdp/bat#man
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-
 # default nvim
 export EDITOR=nvim
 export VISUAL=nvim
@@ -59,7 +58,7 @@ export VISUAL=nvim
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
-# https://unix.stackexchange.com/questions/93476/gnome-terminal-keep-track-of-directory-in-new-tab
+# gnome terminal - keep track of directory in new tab
 source /etc/profile.d/vte.sh
 
 # prompt colors
@@ -124,7 +123,7 @@ alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # sublime text
-alias subl='firejail subl'
+# alias subl='firejail subl'
 
 # systemd
 # +adm / +wheel group
@@ -142,13 +141,17 @@ alias journal='journalctl -p 3 -xb'
 #   sudo systemctl stop libvirtd-ro.socket &&
 #   sudo systemctl stop libvirtd.socket'
 
-# alias tracep="for ttl in {1..30}; do ping -4 -c 1 -t $ttl google && break; done | grep -i from | nl -s ' ' -w 2"
+# alias tracep="for ttl in {1..30}; do ping -4 -c 1 -t $ttl google && \
+#   break; done | grep -i from | nl -s ' ' -w 2"
 
 # razer
 # alias razer-start='systemctl --user start openrazer-daemon.service'
 # alias razer-stop='systemctl --user stop openrazer-daemon.service'
 
+# https://wiki.archlinux.org/title/security#Hardware_vulnerabilities
 alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
+
+# https://wiki.archlinux.org/title/Dotfiles
 alias config='/usr/bin/git --git-dir=/home/ryan/.dotfiles/ --work-tree=/home/ryan'
 source /usr/share/bash-completion/completions/git
 __git_complete config __git_main
