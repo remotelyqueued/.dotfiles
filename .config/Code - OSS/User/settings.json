@@ -1,0 +1,81 @@
+{
+    "editor.minimap.renderCharacters": false,
+    "editor.mouseWheelZoom": true,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "LigaComicMono Nerd Font",
+    "editor.rulers": [80, 120],
+    "editor.linkedEditing": true,
+    "editor.hover.delay": 2000,
+    "editor.tabCompletion": "on",
+    // "editor.fontWeight": "400",
+    "editor.quickSuggestionsDelay": 3,
+    // "emmet.extensionsPath": [
+    //     "C:\\Users\\ryanw\\Documents\\Github\\emmet-snippets\\"
+    // ],
+    "emmet.extensionsPath": ["/home/ryan/Downloads/repos/emmet-snippets/"],
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.useInlineCompletions": true,
+
+    "files.autoSave": "afterDelay",
+
+    "files.associations": {
+        // "*.xml": "html",
+        "*.svg": "html"
+    },
+
+    "git.autofetch": true,
+
+    "html.autoClosingTags": true,
+
+    "livePreview.showServerStatusNotifications": false,
+    "livePreview.openPreviewTarget": "External Browser",
+
+    // "npm.keybindingsChangedWarningShown": true,
+
+    "prettier.arrowParens": "avoid",
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+
+    "security.workspace.trust.untrustedFiles": "open",
+
+    "telemetry.telemetryLevel": "off",
+
+    "terminal.integrated.fontWeight": "bold",
+    "terminal.integrated.fontSize": 16,
+
+    "workbench.colorTheme": "GitHub Dark",
+    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.colorCustomizations": {
+        "minimap.background": "#22262e00"
+    },
+
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "redhat.telemetry.enabled": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "terminal.integrated.lineHeight": 1.0,
+    "git.confirmSync": false,
+    "terminal.integrated.fontWeightBold": "bold",
+    "oneDarkPro.bold": true,
+    "tailwindCSS.emmetCompletions": true,
+    "window.menuBarVisibility": "toggle",
+    "terminal.integrated.fontFamily": "LigaPragmataProMono Nerd Font",
+    "editor.renderWhitespace": "all"
+    // "editor.letterSpacing": -0.4,
+}
