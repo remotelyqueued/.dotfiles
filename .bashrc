@@ -6,7 +6,7 @@
 shopt -s histappend
 
 # https://wiki.archlinux.org/title/bash#Common_programs_and_options
-# sourced in /etc/bash.bashrc
+# https://wiki.archlinux.org/title/bash#Invocation
 # [[ $- != *i* ]] && return
 # shopt -s checkwinsize
 # source /usr/share/bash-completion/bash_completion
@@ -23,7 +23,7 @@ HISTSIZE=
 # number of lines stored in file after session
 HISTFILESIZE=
 
-# decrypt
+# wireshark decrypt
 # export SSLKEYLOGFILE=/home/ryan/.mozilla/ssl-key.log
 
 # privoxy
@@ -35,17 +35,14 @@ HISTFILESIZE=
 # export LESS='-R --use-color -Dd+r$Du+b'
 
 # colorize man
-# https://wiki.archlinux.org/title/Color_output_in_console#man
-# export MANPAGER='less -R --use-color -Dd+r -Du+b'
-
-# colorize man bat
 # https://github.com/sharkdp/bat#man
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# default nvim
+# default editor
 export EDITOR=nvim
 export VISUAL=nvim
 
+# npm user config
 # https://wiki.archlinux.org/title/environment_variables#Per_user
 # https://wiki.archlinux.org/title/Node.js_#Allow_user-wide_installations
 # located in .profile
@@ -53,12 +50,12 @@ export VISUAL=nvim
 # PATH="$HOME/.local/bin:$PATH"
 # export npm_config_prefix="$HOME/.local"
 
-# fzf interactive search
+# interactive search
 # https://wiki.archlinux.org/title/fzf
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
-# gnome terminal - keep track of directory in new tab
+# gnome terminal - open new tab in same directory
 source /etc/profile.d/vte.sh
 
 # prompt colors
@@ -97,7 +94,7 @@ alias lt='lsd -liFS'
 alias mount='mount | column -t'
 alias duffy='sudo du -sch .[!.]* * | sort -rh'
 
-# test entropy
+# entropy
 # https://wiki.archlinux.org/title/Random_number_generation#/dev/random
 alias ent='cat /proc/sys/kernel/random/entropy_avail'
 alias pool='cat /proc/sys/kernel/random/pools'
@@ -115,18 +112,24 @@ alias reflect="sudo reflector --verbose --protocol https \
   --latest 6  --sort rate --country 'United States'\
   --save /etc/pacman.d/mirrorlist"
 
-# static server
+# npm static server
 alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 
+# package viewer
 # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Browsing_packages
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
-# sublime text
+# modified configuration
+# https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
+alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
+
+# todo
 # alias subl='firejail subl'
 
-# systemd
+# systemd journal
 # +adm / +wheel group
+# https://wiki.archlinux.org/title/Systemd/Journal#Journal_access_as_user
 alias failed='systemctl --failed'
 alias journal='journalctl -p 3 -xb'
 
@@ -141,16 +144,19 @@ alias journal='journalctl -p 3 -xb'
 #   sudo systemctl stop libvirtd-ro.socket &&
 #   sudo systemctl stop libvirtd.socket'
 
+# todo
 # alias tracep="for ttl in {1..30}; do ping -4 -c 1 -t $ttl google && \
 #   break; done | grep -i from | nl -s ' ' -w 2"
 
-# razer
+# razer enabled
 # alias razer-start='systemctl --user start openrazer-daemon.service'
 # alias razer-stop='systemctl --user stop openrazer-daemon.service'
 
+# security
 # https://wiki.archlinux.org/title/security#Hardware_vulnerabilities
 alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
 
+# bare git repo
 # https://wiki.archlinux.org/title/Dotfiles
 alias config='/usr/bin/git --git-dir=/home/ryan/.dotfiles/ --work-tree=/home/ryan'
 source /usr/share/bash-completion/completions/git
