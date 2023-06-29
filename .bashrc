@@ -8,8 +8,9 @@ shopt -s histappend
 # https://wiki.archlinux.org/title/bash#Common_programs_and_options
 # https://wiki.archlinux.org/title/bash#Invocation
 # [[ $- != *i* ]] && return
-# shopt -s checkwinsize
-# source /usr/share/bash-completion/bash_completion
+
+# https://wiki.archlinux.org/title/bash#Line_wrap_on_window_resize
+shopt -s checkwinsize
 
 # https://wiki.archlinux.org/title/bash#Shorter_history
 HISTCONTROL=erasedups
@@ -32,7 +33,7 @@ HISTFILESIZE=
 
 # colorize less
 # https://wiki.archlinux.org/title/Color_output_in_console#less
-# export LESS='-R --use-color -Dd+r$Du+b'
+export LESS='-R --use-color -Dd+r$Du+b'
 
 # colorize man
 # https://github.com/sharkdp/bat#man
@@ -45,8 +46,8 @@ export VISUAL=nvim
 # npm user config
 # https://wiki.archlinux.org/title/environment_variables#Per_user
 # https://wiki.archlinux.org/title/Node.js_#Allow_user-wide_installations
-# located in .profile
-# 1. isn't in $PATH, trying .bash-profile
+#
+# located in .bash_profile
 # PATH="$HOME/.local/bin:$PATH"
 # export npm_config_prefix="$HOME/.local"
 
@@ -65,7 +66,7 @@ GREY=$(tput setaf 244)
 RED=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 
-# git
+# git prompt 
 git_prompt() {
   BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
   if [ -n "$BRANCH" ]; then
@@ -76,7 +77,7 @@ git_prompt() {
 fi
 }
 
-# prompt
+# main prompt
 PS1='\[$BLUE\w$(git_prompt)\]
 \[$GREY\]$ \[$RESET\]'
 
@@ -90,7 +91,7 @@ alias grep='grep -n --color=auto --exclude-dir=data_sets'
 alias l='ls --group-directories-first -la'
 alias la='ls -A'
 alias ll='ls -alF'
-alias lt='lsd -liFS'
+alias lt='lsd -liFSh'
 alias mount='mount | column -t'
 alias duffy='sudo du -sch .[!.]* * | sort -rh'
 
@@ -107,15 +108,17 @@ alias wifi='sudo wifi-menu -o'
 # https://wiki.archlinux.org/title/Sudo#Passing_aliases
 alias sudo='sudo -v; sudo '
 
-# man reflector
+# reflector
+# https://wiki.archlinux.org/title/reflector
 alias reflect="sudo reflector --verbose --protocol https \
-  --latest 6  --sort rate --country 'United States'\
+  --latest 6  --sort rate --country 'United States' \
   --save /etc/pacman.d/mirrorlist"
 
 # npm static server
+# https://www.npmjs.com/package/http-server
 alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 
-# package viewer
+# package visualizer
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Browsing_packages
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
@@ -124,11 +127,8 @@ alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
 alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
 
-# package size
-# https://wiki.archlinux.org/title/pacman/Tips_and_tricks#With_size
-alias sortPacmanBySize="LC_ALL=C pacman -Qei | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr"
-
 # todo
+# https://wiki.archlinux.org/title/firejail
 # alias subl='firejail subl'
 
 # systemd journal
@@ -137,7 +137,9 @@ alias sortPacmanBySize="LC_ALL=C pacman -Qei | awk '/^Name/{name=$3} /^Installed
 alias failed='systemctl --failed'
 alias journal='journalctl -p 3 -xb'
 
-# kvm qemu
+# qemu kvm libvirt
+# https://wiki.archlinux.org/title/libvirt#Client
+#
 # alias vm-start='sudo systemctl start libvirtd.service &&
 #   sudo virsh net-start default &&
 #   sudo virsh net-list --all'
@@ -148,11 +150,8 @@ alias journal='journalctl -p 3 -xb'
 #   sudo systemctl stop libvirtd-ro.socket &&
 #   sudo systemctl stop libvirtd.socket'
 
-# todo
-# alias tracep="for ttl in {1..30}; do ping -4 -c 1 -t $ttl google && \
-#   break; done | grep -i from | nl -s ' ' -w 2"
-
-# razer enabled
+# razer
+# https://wiki.archlinux.org/title/Razer_Blade
 # alias razer-start='systemctl --user start openrazer-daemon.service'
 # alias razer-stop='systemctl --user stop openrazer-daemon.service'
 

@@ -67,5 +67,6 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "window.zoomLevel": 1
 }
