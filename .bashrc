@@ -116,13 +116,17 @@ alias reflect="sudo reflector --verbose --protocol https \
 alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 
 # package viewer
-# https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Browsing_packages
+# https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Browsing_packages
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # modified configuration
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
 alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
+
+# package size
+# https://wiki.archlinux.org/title/pacman/Tips_and_tricks#With_size
+alias sortPacmanBySize="LC_ALL=C pacman -Qei | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr"
 
 # todo
 # alias subl='firejail subl'
