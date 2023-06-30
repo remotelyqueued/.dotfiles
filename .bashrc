@@ -1,5 +1,6 @@
 ####
 # arch - persistent usb
+# https://gitlab.archlinux.org/pacman/pacman
 ##
 
 # shell options
