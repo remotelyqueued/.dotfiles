@@ -1,5 +1,5 @@
-###
-# arch
+####
+# arch - persistent usb
 ##
 
 # shell options
