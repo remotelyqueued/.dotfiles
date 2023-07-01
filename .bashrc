@@ -3,30 +3,26 @@
 # https://gitlab.archlinux.org/pacman/pacman
 ##
 
+# If not running interactively, don't do anything further
+[[ $- != *i* ]] && return
+
 # shell options
 shopt -s histappend
-
-# https://wiki.archlinux.org/title/bash#Common_programs_and_options
-# https://wiki.archlinux.org/title/bash#Invocation
-# [[ $- != *i* ]] && return
 
 # https://wiki.archlinux.org/title/bash#Line_wrap_on_window_resize
 shopt -s checkwinsize
 
-# https://wiki.archlinux.org/title/bash#Shorter_history
-HISTCONTROL=erasedups
+# https://wiki.archlinux.org/title/bash#History_customization
+HISTCONTROL="erasedups:ignorespace"
 
-# time
-HISTTIMEFORMAT='%D %I:%M %p '
+# history time
+HISTTIMEFORMAT="%m/%d/%y %I:%M:%S%p "
 
 # number of lines stored during session
 HISTSIZE=
 
 # number of lines stored in file after session
 HISTFILESIZE=
-
-# wireshark decrypt
-# export SSLKEYLOGFILE=/home/ryan/.mozilla/ssl-key.log
 
 # privoxy
 # https://wiki.archlinux.org/title/privoxy
@@ -41,23 +37,19 @@ export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # default editor
-export EDITOR=nvim
 export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # npm user config
-# https://wiki.archlinux.org/title/environment_variables#Per_user
-# https://wiki.archlinux.org/title/Node.js_#Allow_user-wide_installations
-#
-# located in .bash_profile
-# PATH="$HOME/.local/bin:$PATH"
-# export npm_config_prefix="$HOME/.local"
+# .bash_profile
 
 # interactive search
 # https://wiki.archlinux.org/title/fzf
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
-# gnome terminal - open new tab in same directory
+# new terminals adopt current working directory
+# https://wiki.archlinux.org/title/GNOME/Tips_and_tricks
 source /etc/profile.d/vte.sh
 
 # prompt colors
@@ -67,7 +59,7 @@ GREY=$(tput setaf 244)
 RED=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 
-# git prompt 
+# git prompt
 git_prompt() {
   BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
   if [ -n "$BRANCH" ]; then
@@ -96,10 +88,7 @@ alias lt='lsd -liFSh'
 alias mount='mount | column -t'
 alias duffy='sudo du -sch .[!.]* * | sort -rh'
 
-# entropy
-# https://wiki.archlinux.org/title/Random_number_generation#/dev/random
-alias ent='cat /proc/sys/kernel/random/entropy_avail'
-alias pool='cat /proc/sys/kernel/random/pools'
+# https://wiki.archlinux.org/title/Random_number_generation
 
 # netctl
 # https://wiki.archlinux.org/title/netctl#Obfuscate_wireless_passphrase
@@ -124,7 +113,7 @@ alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
-# modified configuration
+# contain user changes
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
 alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
 
@@ -144,7 +133,7 @@ alias journal='journalctl -p 3 -xb'
 # alias vm-start='sudo systemctl start libvirtd.service &&
 #   sudo virsh net-start default &&
 #   sudo virsh net-list --all'
-# 
+#
 # alias vm-stop='sudo virsh net-destroy default &&
 #   sudo systemctl stop libvirtd.service &&
 #   sudo systemctl stop libvirtd-admin.socket &&
