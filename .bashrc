@@ -88,8 +88,6 @@ alias lt='lsd -liFSh'
 alias mount='mount | column -t'
 alias duffy='sudo du -sch .[!.]* * | sort -rh'
 
-# https://wiki.archlinux.org/title/Random_number_generation
-
 # netctl
 # https://wiki.archlinux.org/title/netctl#Obfuscate_wireless_passphrase
 alias wifi='sudo wifi-menu -o'
@@ -116,10 +114,6 @@ alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
 # contain user changes
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
 alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
-
-# todo
-# https://wiki.archlinux.org/title/firejail
-# alias subl='firejail subl'
 
 # systemd journal
 # +adm / +wheel group
@@ -148,6 +142,12 @@ alias journal='journalctl -p 3 -xb'
 # security
 # https://wiki.archlinux.org/title/security#Hardware_vulnerabilities
 alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
+
+# apparmor
+# https://wiki.archlinux.org/title/AppArmor#Installation
+#
+# todo: audit framework
+alias lsm='cat /sys/kernel/security/lsm'
 
 # bare git repo
 # https://wiki.archlinux.org/title/Dotfiles
