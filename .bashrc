@@ -1,7 +1,20 @@
 ####
 # arch - persistent usb
 # https://gitlab.archlinux.org/pacman/pacman
+#
+# todo:
+# audit framework
 ##
+
+# npm user config
+# .bash_profile
+
+# qemu kvm libvirt
+# https://wiki.archlinux.org/title/libvirt#Client
+
+# privoxy
+# https://wiki.archlinux.org/title/privoxy
+# http_proxy="http://localhost:8118"
 
 # If not running interactively, don't do anything further
 [[ $- != *i* ]] && return
@@ -24,10 +37,6 @@ HISTSIZE=
 # number of lines stored in file after session
 HISTFILESIZE=
 
-# privoxy
-# https://wiki.archlinux.org/title/privoxy
-# http_proxy="http://localhost:8118"
-
 # colorize less
 # https://wiki.archlinux.org/title/Color_output_in_console#less
 export LESS='-R --use-color -Dd+r$Du+b'
@@ -39,9 +48,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # default editor
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
-# npm user config
-# .bash_profile
 
 # interactive search
 # https://wiki.archlinux.org/title/fzf
@@ -78,7 +84,7 @@ PS1='\[$BLUE\w$(git_prompt)\]
 alias ls='ls --color=auto'
 alias ip='ip --color=auto'
 alias diff='diff --color=auto'
-alias grep='grep -n --color=auto --exclude-dir=data_sets'
+alias grep='grep -n --color=auto'
 
 # shortcuts
 alias l='ls --group-directories-first -la'
@@ -111,33 +117,14 @@ alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
-# contain user changes
+# user modifications
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
 alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
 
 # systemd journal
-# +adm / +wheel group
 # https://wiki.archlinux.org/title/Systemd/Journal#Journal_access_as_user
 alias failed='systemctl --failed'
 alias journal='journalctl -p 3 -xb'
-
-# qemu kvm libvirt
-# https://wiki.archlinux.org/title/libvirt#Client
-#
-# alias vm-start='sudo systemctl start libvirtd.service &&
-#   sudo virsh net-start default &&
-#   sudo virsh net-list --all'
-#
-# alias vm-stop='sudo virsh net-destroy default &&
-#   sudo systemctl stop libvirtd.service &&
-#   sudo systemctl stop libvirtd-admin.socket &&
-#   sudo systemctl stop libvirtd-ro.socket &&
-#   sudo systemctl stop libvirtd.socket'
-
-# razer
-# https://wiki.archlinux.org/title/Razer_Blade
-# alias razer-start='systemctl --user start openrazer-daemon.service'
-# alias razer-stop='systemctl --user stop openrazer-daemon.service'
 
 # security
 # https://wiki.archlinux.org/title/security#Hardware_vulnerabilities
@@ -145,9 +132,10 @@ alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
 
 # apparmor
 # https://wiki.archlinux.org/title/AppArmor#Installation
-#
-# todo: audit framework
 alias lsm='cat /sys/kernel/security/lsm'
+
+# wpa version - man wpa_cli
+alias wpa='sudo wpa_cli status'
 
 # bare git repo
 # https://wiki.archlinux.org/title/Dotfiles

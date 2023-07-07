@@ -42,7 +42,7 @@
     "telemetry.telemetryLevel": "off",
 
     "terminal.integrated.fontWeight": "bold",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 18,
     "terminal.integrated.lineHeight": 1.0,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
 
@@ -68,5 +68,5 @@
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "window.zoomLevel": 1
+    "window.zoomLevel": -1
 }
