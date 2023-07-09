@@ -6,15 +6,10 @@
 # audit framework
 ##
 
-# npm user config
-# .bash_profile
+# npm user config .bash_profile
 
 # qemu kvm libvirt
 # https://wiki.archlinux.org/title/libvirt#Client
-
-# privoxy
-# https://wiki.archlinux.org/title/privoxy
-# http_proxy="http://localhost:8118"
 
 # If not running interactively, don't do anything further
 [[ $- != *i* ]] && return
@@ -44,6 +39,7 @@ export LESS='-R --use-color -Dd+r$Du+b'
 # colorize man
 # https://github.com/sharkdp/bat#man
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 
 # default editor
 export VISUAL=nvim
@@ -127,7 +123,8 @@ alias changed="sudo pacman -Qii | awk '/^MODIFIED/ {print $2}' | sort"
 # systemd journal
 # https://wiki.archlinux.org/title/Systemd/Journal#Journal_access_as_user
 alias failed='systemctl --failed'
-alias journal='journalctl -p 3 -xb'
+# alias journal='journalctl -p 3 -xb'
+alias journal='journalctl -f | bat --paging=never -l log'
 
 # security
 # https://wiki.archlinux.org/title/security#Hardware_vulnerabilities
