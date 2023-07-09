@@ -94,13 +94,16 @@ alias lt='lsd -liFSh'
 alias mount='mount | column -t'
 alias duffy='sudo du -sch .[!.]* * | sort -rh'
 
+# extend sudo timeout
+# https://wiki.archlinux.org/title/Sudo#Passing_aliases
+alias sudo='sudo -v; sudo '
+
 # netctl
 # https://wiki.archlinux.org/title/netctl#Obfuscate_wireless_passphrase
 alias wifi='sudo wifi-menu -o'
 
-# extend sudo timeout
-# https://wiki.archlinux.org/title/Sudo#Passing_aliases
-alias sudo='sudo -v; sudo '
+# wpa version - man wpa_cli
+alias wpa='sudo wpa_cli status'
 
 # reflector
 # https://wiki.archlinux.org/title/reflector
@@ -133,9 +136,6 @@ alias vuln='grep -r . /sys/devices/system/cpu/vulnerabilities/'
 # apparmor
 # https://wiki.archlinux.org/title/AppArmor#Installation
 alias lsm='cat /sys/kernel/security/lsm'
-
-# wpa version - man wpa_cli
-alias wpa='sudo wpa_cli status'
 
 # bare git repo
 # https://wiki.archlinux.org/title/Dotfiles
