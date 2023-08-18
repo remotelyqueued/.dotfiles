@@ -42,11 +42,9 @@
     "telemetry.telemetryLevel": "off",
 
     "terminal.integrated.fontWeight": "bold",
-    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1.0,
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-
-    "window.menuBarVisibility": "toggle",
 
     "workbench.colorCustomizations": {
         "minimap.background": "#22262e00"
@@ -67,6 +65,5 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "window.zoomLevel": -1
+    }
 }

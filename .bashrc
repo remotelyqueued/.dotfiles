@@ -80,7 +80,7 @@ PS1='\[$BLUE\w$(git_prompt)\]
 alias ls='ls --color=auto'
 alias ip='ip --color=auto'
 alias diff='diff --color=auto'
-alias grep='grep -n --color=auto'
+alias grep='grep --color=auto'
 
 # shortcuts
 alias l='ls --group-directories-first -la'
