@@ -111,10 +111,14 @@ alias reflect="sudo reflector --verbose --protocol https \
 # https://www.npmjs.com/package/http-server
 alias serve="http-server -p 5500 --cors -c-1 --log-ip -r"
 
-# package visualizer
+# terminal ui
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Browsing_packages
 alias sc="pacman -Qq | fzf --preview 'pacman -Qil {}' \
   --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pacs='pacman --color always -Sl | sed -e "s: :/:; /installed/d" \
+  | cut -f 1 -d " " | fzf --multi --ansi --preview "pacman -Si {1}" | xargs -ro sudo pacman -S'
+alias pacr="pacman --color always -Q | cut -f 1 -d ' ' | fzf --multi --ansi \
+  --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 
 # user modifications
 # https://wiki.archlinux.org/title/pacman/Tips_and_tricks#Listing_changed_backup_files
